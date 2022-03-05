@@ -1,4 +1,3 @@
-from msilib.schema import Error
 from mrz.checker.td1 import TD1CodeChecker
 from mrz.checker.td3 import TD3CodeChecker
 import json
