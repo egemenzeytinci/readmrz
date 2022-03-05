@@ -2,6 +2,7 @@
 
 # Ingore defined errors and warnings
 disable=
+    broad-except,
     missing-class-docstring,
     missing-function-docstring,
     missing-module-docstring,
@@ -11,6 +12,16 @@ disable=
 
 # A comma-separated list of package or module names from where C extensions may be loaded
 extension-pkg-whitelist=cv2
+
+good-names=
+    e,
+    x,
+    y,
+    z,
+    h,
+    w,
+    px,
+    py
 
 # Max length is 100 characters
 max-line-length=79

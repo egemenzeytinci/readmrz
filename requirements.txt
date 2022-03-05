@@ -1,2 +1,3 @@
+mrz
 opencv-python
 pytesseract
