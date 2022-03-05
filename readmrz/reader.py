@@ -1,3 +1,5 @@
+from msilib.schema import Error
+from mrz.checker.td1 import TD1CodeChecker
 from mrz.checker.td3 import TD3CodeChecker
 import json
 import os
@@ -35,7 +37,6 @@ class MrzReader:
             'birth_date_hash',
             'expiry_date_hash',
             'document_number_hash',
-            'optional_data_hash',
             'final_hash',
         ]
 
@@ -81,7 +82,14 @@ class MrzReader:
 
         try:
             # validate code
-            checker = TD3CodeChecker(code)
+            # 92 characters -> ID card
+            # 89 characters -> Passport
+            if len(code) == 92:
+                checker = TD1CodeChecker(code)
+            elif len(code) == 89:
+                checker = TD3CodeChecker(code)
+            else:
+                raise Exception('The MRZ code could not be detected.')
 
             # extract fields
             fields = checker.fields()
@@ -109,4 +117,4 @@ class MrzReader:
         # get identity fields from text
         result = self.get_fields(code)
 
-        return json.dumps(result)
+        return json.dumps(result, indent=4)
