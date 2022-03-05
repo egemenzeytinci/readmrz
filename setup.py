@@ -16,6 +16,7 @@ setuptools.setup(
     packages=['readmrz'],
     include_package_data=True,
     install_requires=[
+        'mrz',
         'opencv-python',
         'pytesseract',
     ],

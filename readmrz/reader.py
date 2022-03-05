@@ -1,3 +1,5 @@
+from mrz.checker.td3 import TD3CodeChecker
+import json
 import os
 import pytesseract
 import re
@@ -18,6 +20,24 @@ class MrzReader:
         white_list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<'
 
         self._config = f'tessedit_char_whitelist={white_list}'
+
+        self._fields = [
+            'surname',
+            'name',
+            'country',
+            'nationality',
+            'birth_date',
+            'expiry_date',
+            'sex',
+            'document_type',
+            'document_number',
+            'optional_data',
+            'birth_date_hash',
+            'expiry_date_hash',
+            'document_number_hash',
+            'optional_data_hash',
+            'final_hash',
+        ]
 
     def read_mrz(self, image):
         """
@@ -48,3 +68,45 @@ class MrzReader:
                 codes.append(line.replace(' ', ''))
 
         return '\n'.join(codes)
+
+    def get_fields(self, code):
+        """
+        Extract identity fields from string
+
+        :param str code: code contains identity fields
+        :return: extracted fields
+        :rtype: dict
+        """
+        result = {}
+
+        try:
+            # validate code
+            checker = TD3CodeChecker(code)
+
+            # extract fields
+            fields = checker.fields()
+
+            # add field to result dict
+            for field in self._fields:
+                val = getattr(fields, field)
+                result[field] = val
+        except Exception as e:
+            raise Exception(e) from e
+
+        return result
+
+    def process(self, image):
+        """
+        Extract identity fields from cropped image
+
+        :param np.ndarray image: cropped image
+        :return: identity fields as json format
+        :rtype: json
+        """
+        # get text from cropped image
+        code = self.read_mrz(image)
+
+        # get identity fields from text
+        result = self.get_fields(code)
+
+        return json.dumps(result)

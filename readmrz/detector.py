@@ -145,21 +145,31 @@ class MrzDetector:
         contours = sorted(contours, key=cv2.contourArea, reverse=True)
 
         for contour in contours:
-            x_val, y_val, w_val, h_val = cv2.boundingRect(contour)
-            ar_val = w_val / float(h_val)
-            cr_width = w_val / float(im_dark.shape[1])
+            # compute the bounding box of the contour
+            # compute the aspect ratio and coverage ratio of the bounding box
+            x, y, w, h = cv2.boundingRect(contour)
+            aspect = w / float(h)
+            cr_width = w / float(im_dark.shape[1])
 
-            if ar_val > 5 and cr_width > 0.5:
-                px_val = int((x_val + w_val) * 0.03)
-                py_val = int((y_val + h_val) * 0.03)
-                x_val, y_val = x_val - px_val, y_val - py_val
-                w_val, h_val = w_val + (px_val * 2), h_val + (py_val * 2)
+            # check to thresholds for aspect ratio and coverage width
+            if aspect > 5 and cr_width > 0.5:
+                px = int((x + w) * 0.03)
+                py = int((y + h) * 0.03)
+                x, y = x - px, y - py
+                w, h = w + (px * 2), h + (py * 2)
 
                 break
 
-        return y_val, y_val + h_val + 10, x_val, x_val + w_val + 10
+        return y, y + h + 10, x, x + w + 10
 
     def crop_area(self, path):
+        """
+        Crop mrz area from image located in path
+
+        :param str path: image path
+        :return: cropped image
+        :rtype: np.ndarray
+        """
         # read image from path
         image = self.read(path)
 
