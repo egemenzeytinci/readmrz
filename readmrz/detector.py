@@ -186,6 +186,6 @@ class MrzDetector:
         thresh = self.apply_threshold(dark)
 
         # find mrz code area coordinaties
-        y_val, y1_val, x_val, x1_val = self.find_coordinates(thresh, smoothed)
+        y, y1, x, x1 = self.find_coordinates(thresh, smoothed)
 
-        return resized[y_val:y1_val, x_val:x1_val]
+        return resized[y:y1, x:x1]
