@@ -22,8 +22,9 @@ $ pip install readmrz
 >>> detector = MrzDetector()
 >>> reader = MrzReader()
 
->>> image = detector.crop_area('/path/to/file')
->>> result = reader.process(image)
+>>> image = detector.read('/path/to/file')
+>>> cropped = detector.crop_area(image)
+>>> result = reader.process(cropped)
 >>> print(json.dumps(result))
 {
     "surname": "STEARNE",
@@ -43,10 +44,47 @@ $ pip install readmrz
 }
 ```
 
-The result is returned as json so it's easy to access the fields. You can also use command-line,
+or using url,
+
+```python
+>>> import json
+>>> from readmrz import MrzDetector, MrzReader
+
+>>> detector = MrzDetector()
+>>> reader = MrzReader()
+
+>>> image = detector.read_from_url('/url/to/image')
+>>> cropped = detector.crop_area(image)
+>>> result = reader.process(cropped)
+>>> print(json.dumps(result))
+{
+    "surname": "STEARNE",
+    "name": "JOHN TIMOTHY KELLY",
+    "country": "CAN",
+    "nationality": "CAN",
+    "birth_date": "580702",
+    "expiry_date": "240904",
+    "sex": "M",
+    "document_type": "P",
+    "document_number": "GA302922",
+    "optional_data": "",
+    "birth_date_hash": "0",
+    "expiry_date_hash": "3",
+    "document_number_hash": "0",
+    "final_hash": "2"
+}
+```
+
+The result is returned as a dict so it's easy to access the fields. You can also use command-line,
 
 ```zsh
 $ readmrz -p /path/to/file
+```
+
+or using url,
+
+```zsh
+$ readmrz -u /url/to/image
 ```
 
 ## Example

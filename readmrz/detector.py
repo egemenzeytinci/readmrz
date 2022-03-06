@@ -2,6 +2,7 @@ import cv2
 import errno
 import numpy as np
 import os
+import urllib.request
 
 
 class MrzDetector:
@@ -42,8 +43,30 @@ class MrzDetector:
 
         return image
 
-    def read_from_array(self):
-        raise NotImplementedError
+    def read_from_url(self, url):
+        """
+        Read image from given url
+
+        :param str url: image url
+        :return: image array
+        :rtype: np.ndarray
+        """
+        image = None
+
+        try:
+            # request to url
+            with urllib.request.urlopen(url) as request:
+                response = request.read()
+
+            # response content to numpy array
+            arr = np.array(bytearray(response), dtype=np.uint8)
+
+            # decode image
+            image = cv2.imdecode(arr, -1)
+        except Exception as e:
+            raise Exception(e) from e
+
+        return image
 
     def resize(self, image):
         """
@@ -162,17 +185,14 @@ class MrzDetector:
 
         return y, y + h + 10, x, x + w + 10
 
-    def crop_area(self, path):
+    def crop_area(self, image):
         """
-        Crop mrz area from image located in path
+        Crop mrz area from given image
 
-        :param str path: image path
+        :param np.ndarray image: image array
         :return: cropped image
         :rtype: np.ndarray
         """
-        # read image from path
-        image = self.read(path)
-
         # resize the image
         resized = self.resize(image)
 
