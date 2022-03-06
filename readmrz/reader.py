@@ -1,6 +1,5 @@
 from mrz.checker.td1 import TD1CodeChecker
 from mrz.checker.td3 import TD3CodeChecker
-import json
 import os
 import pytesseract
 import re
@@ -114,6 +113,4 @@ class MrzReader:
         code = self.read_mrz(image)
 
         # get identity fields from text
-        result = self.get_fields(code)
-
-        return json.dumps(result, indent=4)
+        return self.get_fields(code)

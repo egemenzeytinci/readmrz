@@ -16,13 +16,15 @@ $ pip install readmrz
 ## Usage
 
 ```python
+>>> import json
 >>> from readmrz import MrzDetector, MrzReader
 
 >>> detector = MrzDetector()
 >>> reader = MrzReader()
 
 >>> image = detector.crop_area('/path/to/file')
->>> print(reader.process(image))
+>>> result = reader.process(image)
+>>> print(json.dumps(result))
 {
     "surname": "STEARNE",
     "name": "JOHN TIMOTHY KELLY",

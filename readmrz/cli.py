@@ -1,6 +1,7 @@
 from .detector import MrzDetector
 from .reader import MrzReader
 import argparse
+import json
 
 
 def main():
@@ -20,4 +21,6 @@ def main():
 
     reader = MrzReader()
 
-    print(reader.process(image))
+    result = reader.process(image)
+
+    print(json.dumps(result, indent=4))
