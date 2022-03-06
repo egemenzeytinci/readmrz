@@ -8,3 +8,6 @@ __pycache__/
 # IDE related
 .vscode/
 .idea/
+
+# Jupyter notebook
+.ipynb_checkpoints/

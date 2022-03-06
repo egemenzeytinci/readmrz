@@ -17,7 +17,9 @@ extension-pkg-whitelist=cv2
 good-names=
     e,
     x,
+    x1,
     y,
+    y1,
     z,
     h,
     w,
