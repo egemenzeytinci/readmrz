@@ -1,7 +1,7 @@
-from .detector import MrzDetector
-from .reader import MrzReader
 import argparse
 import json
+from .detector import MrzDetector
+from .reader import MrzReader
 
 
 def main():

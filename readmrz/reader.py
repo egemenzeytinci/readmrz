@@ -1,8 +1,8 @@
-from mrz.checker.td1 import TD1CodeChecker
-from mrz.checker.td3 import TD3CodeChecker
 import os
 import pytesseract
 import re
+from mrz.checker.td1 import TD1CodeChecker
+from mrz.checker.td3 import TD3CodeChecker
 
 
 class MrzReader:
