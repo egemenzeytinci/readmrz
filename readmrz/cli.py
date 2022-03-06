@@ -13,14 +13,26 @@ def main():
         '-p', '--path', help='The image path to read mrz code'
     )
 
+    parser.add_argument(
+        '-u', '--url', help='The image url to read mrz code'
+    )
+
     args = parser.parse_args()
+
+    if args.path and args.url:
+        raise Exception('Path and url cannot be pass at the same time.')
 
     detector = MrzDetector()
 
-    image = detector.crop_area(args.path)
-
     reader = MrzReader()
 
-    result = reader.process(image)
+    if args.path:
+        image = detector.read(args.path)
+    elif args.url:
+        image = detector.read_from_url(args.url)
+
+    cropped = detector.crop_area(image)
+
+    result = reader.process(cropped)
 
     print(json.dumps(result, indent=4))
