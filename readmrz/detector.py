@@ -113,7 +113,7 @@ class MrzDetector:
             x_grad, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU
         )[1]
 
-        #  another closing operation to close gaps between lines of the MRZ
+        # another closing operation to close gaps between lines of the MRZ
         thresh = cv2.morphologyEx(thresh, cv2.MORPH_CLOSE, self._sq_kernel)
 
         # perform a series of erosions to break apart connected components
