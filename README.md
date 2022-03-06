@@ -47,7 +47,7 @@ The result is returned as json so it's easy to access the fields. You can also u
 $ readmrz -p /path/to/file
 ```
 
-Please check to the [notebook](#) to see the results step by step.
+Please check to the [notebook](https://github.com/egemenzeytinci/readmrz/blob/master/notebook/example.ipynb) to see the results step by step.
 
 
 ## Contribution
