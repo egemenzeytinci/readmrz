@@ -71,7 +71,7 @@ jobs:
       - name: Lint with pylint
         run: |
           pip install pylint
-          pylint `find . | grep '.*.py$'`
+          pylint **/*.py
       - name: Unit testing
         run: |
           python -m unittest test
