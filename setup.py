@@ -6,7 +6,7 @@ with open('README.md', 'r', encoding='utf8') as f:
 
 setuptools.setup(
     name='readmrz',
-    version='0.0.4',
+    version='0.0.5',
     author='Egemen Zeytinci',
     author_email='egemenzeytinci@gmail.com',
     description='Machine readable zone reader on ID cards',
