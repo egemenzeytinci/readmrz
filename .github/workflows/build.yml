@@ -71,7 +71,7 @@ jobs:
       - name: Lint with pylint
         run: |
           pip install pylint
-          pylint **/*.py
+          pylint $(git ls-files '*.py')
       - name: Unit testing
         run: |
           python -m unittest test
