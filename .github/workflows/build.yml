@@ -74,7 +74,7 @@ jobs:
           pylint $(git ls-files '*.py')
       - name: Install package
         run: |
-          python setup.py sdist bdist_wheel
+          python -m build
           pip install .
       - name: Unit testing
         run: python -m unittest test
