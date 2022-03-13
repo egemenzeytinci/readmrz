@@ -40,6 +40,16 @@ jobs:
             os: "macOS-latest",
             python-architecture: "x64",
             name: "macOS x64"
+          },
+          {
+            os: "windows-latest",
+            python-architecture: "x86",
+            name: "Windows x86"
+          },
+          {
+            os: "windows-latest",
+            python-architecture: "x64",
+            name: "Windows x64"
           }
         ]
       fail-fast: false
@@ -72,5 +82,13 @@ jobs:
       - name: Install tesseract on Linux
         run: sudo apt-get install -y tesseract-ocr
         if: runner.os == 'Linux'
+      - name: Install tesseract on Windows
+        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        with:
+          args: install --yes tesseract
+        if: runner.os == 'Windows'
+      - name: Set PATH variable on Windows
+        run: echo "C:\Program Files\Tesseract-OCR" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        if: runner.os == 'Windows'
       - name: Unit testing
         run: python -m unittest test
