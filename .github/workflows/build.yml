@@ -76,6 +76,11 @@ jobs:
         run: |
           python setup.py build
           python setup.py install
-          pip install .
+      - name: Install tesseract on macOS
+        run: brew install tesseract
+        if: runner.os == 'macOS'
+      - name: Install tesseract on Linux
+        run: apt-get install -y tesseract-ocr
+        if: runner.os == 'Linux'
       - name: Unit testing
         run: python -m unittest test
