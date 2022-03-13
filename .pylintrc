@@ -28,3 +28,10 @@ good-names=
 
 # Max length is 100 characters
 max-line-length=79
+
+# Ignore unittest folder
+ignore=
+    command_line.py,
+    read_from_file.py,
+    read_from_url.py
+
