@@ -73,6 +73,8 @@ jobs:
           pip install pylint
           pylint $(git ls-files '*.py')
       - name: Install package
-        run: python .github/build/install.py ${{ matrix.python.name }}
+        run: |
+          python setup.py sdist bdist_wheel
+          pip install .
       - name: Unit testing
         run: python -m unittest test
