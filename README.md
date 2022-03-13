@@ -7,6 +7,19 @@ It has universal standards in new generation identity cards and passports.
 
 ## Install
 
+Please install `tesseract` before installing the package,
+
+On macOS,
+
+```zsh
+brew install tesseract
+```
+
+On Ubuntu,
+```zsh
+sudo apt-get install -y tesseract-ocr
+```
+
 Latest release on PyPI:
 
 ```zsh
