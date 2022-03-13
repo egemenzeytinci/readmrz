@@ -72,6 +72,7 @@ jobs:
         run: |
           pip install pylint
           pylint $(git ls-files '*.py')
+      - name: Install package
+        run: python .github/build/install.py ${{ matrix.python.name }}
       - name: Unit testing
-        run: |
-          python -m unittest test
+        run: python -m unittest test

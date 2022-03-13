@@ -39,12 +39,3 @@ class ReadFromUrlTest(TestCase):
         result = reader.process(cropped)
 
         self.assertDictEqual(expected, result)
-
-    def test_invalid_url(self):
-        detector = MrzDetector()
-
-        # if the url is not valid
-        with self.assertRaises(Exception) as context:
-            detector.read_from_url(self.VALID_URL[:-1])
-
-        self.assertTrue('HTTP Error 404: Not Found' in str(context.exception))
