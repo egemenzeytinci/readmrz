@@ -10,7 +10,7 @@ def main():
     )
 
     parser.add_argument(
-        '-p', '--path', help='The image path to read mrz code'
+        '-f', '--file', help='The image file path to read mrz code'
     )
 
     parser.add_argument(
@@ -19,15 +19,15 @@ def main():
 
     args = parser.parse_args()
 
-    if args.path and args.url:
-        raise Exception('Path and url cannot be pass at the same time.')
+    if args.file and args.url:
+        raise Exception('File path and url cannot be pass at the same time.')
 
     detector = MrzDetector()
 
     reader = MrzReader()
 
-    if args.path:
-        image = detector.read(args.path)
+    if args.file:
+        image = detector.read(args.file)
     elif args.url:
         image = detector.read_from_url(args.url)
 

@@ -27,6 +27,9 @@ class MrzDetector:
         :return: image array
         :rtype: np.ndarray
         """
+        if not path.endswith(('.jpg', '.jpeg', '.png')):
+            raise TypeError('The file should be in image format.')
+
         # if the path does not exist
         if not os.path.exists(path):
             raise FileNotFoundError(

@@ -78,7 +78,7 @@ or using url,
 The result is returned as a dict so it's easy to access the fields. You can also use command-line,
 
 ```zsh
-$ readmrz -p /path/to/file
+$ readmrz -f /path/to/file
 ```
 
 or using url,
