@@ -40,17 +40,7 @@ jobs:
             os: "macOS-latest",
             python-architecture: "x64",
             name: "macOS x64"
-          },
-          {
-            os: "windows-latest",
-            python-architecture: "x86",
-            name: "Windows x86"
-          },
-          {
-            os: "windows-latest",
-            python-architecture: "x64",
-            name: "Windows x64"
-          },
+          }
         ]
       fail-fast: false
     steps:
@@ -80,7 +70,7 @@ jobs:
         run: brew install tesseract
         if: runner.os == 'macOS'
       - name: Install tesseract on Linux
-        run: apt-get install -y tesseract-ocr
+        run: sudo apt-get install -y tesseract-ocr
         if: runner.os == 'Linux'
       - name: Unit testing
         run: python -m unittest test
