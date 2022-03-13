@@ -3,8 +3,8 @@ from unittest import TestCase
 
 
 class ReadFromUrlTest(TestCase):
-    BASE = 'https://canadapassporthelp.ca/wp-content/uploads/2009/11'
-    VALID_URL = f'{BASE}/1599px-JTK_Stearne_Passport-1024x727.jpg'
+    BASE = 'https://raw.githubusercontent.com/egemenzeytinci'
+    VALID_URL = f'{BASE}/readmrz/master/images/example.jpg'
 
     def test_valid(self):
         detector = MrzDetector()
