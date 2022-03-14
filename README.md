@@ -1,9 +1,11 @@
 # readmrz
 
-`readmrz` detects the machine readable zone on ID cards and extracts the text in that zone. 
+`readmrz` detects the machine readable zone on ID cards and extracts the text in that zone.
 
-This zone contains the name, surname, date of birth, etc. of the person to whom the identity card was issued. 
+This zone contains the name, surname, date of birth, etc. of the person to whom the identity card was issued.
 It has universal standards in new generation identity cards and passports.
+
+In conclusion, `readmrz` is a tool to read mrz code on identity cards and passports.
 
 ## Install
 
@@ -12,15 +14,22 @@ Please install `tesseract` before installing the package,
 On macOS,
 
 ```zsh
-brew install tesseract
+$ brew install tesseract
 ```
 
 On Ubuntu,
+
 ```zsh
-sudo apt-get install -y tesseract-ocr
+$ sudo apt-get install -y tesseract-ocr
 ```
 
-Latest release on PyPI:
+On Windows,
+
+```zsh
+$ choco install tesseract
+```
+
+Then you can install the latest release,
 
 ```zsh
 $ pip install readmrz
@@ -105,7 +114,6 @@ $ readmrz -u /url/to/image
 ![example](/images/flow.jpg)
 
 Please check to the [notebook](https://github.com/egemenzeytinci/readmrz/blob/master/notebook/example.ipynb) to see the results step by step.
-
 
 ## Contribution
 
