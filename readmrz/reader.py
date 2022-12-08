@@ -57,7 +57,7 @@ class MrzReader:
         lines = extracted.split('\n')
 
         # pattern to find text between `<` chars
-        pattern = '^.*?[<]{1,3}([0-9]{1,6}|[<]{1,2})$'
+        pattern = '^.*?[<]{1,3}([0-9]{1,6}|[<]{1,2}|[A-Z]+)$'
 
         codes = []
 
