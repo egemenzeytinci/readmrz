@@ -6,12 +6,12 @@ disable=
     missing-class-docstring,
     missing-function-docstring,
     missing-module-docstring,
-    no-self-use,
     too-few-public-methods,
     wrong-import-order
 
 # A comma-separated list of package or module names from where C extensions may be loaded
-extension-pkg-whitelist=cv2
+generated-members=
+    cv2
 
 # Good variable names which should always be accepted, separated by a comma
 good-names=
