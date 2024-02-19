@@ -87,7 +87,7 @@ class MrzReader:
             elif len(code) == 89:
                 checker = TD3CodeChecker(code)
             else:
-                raise Exception('The MRZ code could not be detected.')
+                raise Exception('The MRZ code is not valid.')
 
             # extract fields
             fields = checker.fields()
